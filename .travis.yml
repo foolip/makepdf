@@ -1,6 +1,8 @@
 addons:
   apt:
     packages:
+      - fonts-dejavu
+      - fonts-droid
       - netpbm
       - sam2p
 script:
