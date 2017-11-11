@@ -1,6 +1,7 @@
 addons:
   apt:
     packages:
+      - ghostscript
       - netpbm
       - sam2p
 script:
@@ -12,5 +13,7 @@ script:
   - ls -l print.pdf
   # optimize
   # - curl --remote-name --fail https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
-  - ./pdfsizeopt/pdfsizeopt --do-require-image-optimizers=no print.pdf print-opt.pdf
+  - ./pdfsizeopt/pdfsizeopt --do-require-image-optimizers=no print.pdf print-pdfsizeopt.pdf
+  - ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=print-printer.pdf print.pdf
+  - ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=print-screen.pdf print.pdf
   - ls -l *.pdf
