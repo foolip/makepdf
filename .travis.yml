@@ -1,6 +1,7 @@
 addons:
   apt:
     packages:
+      - default-jre
       - fonts-dejavu
       - fonts-droid
       - netpbm
@@ -13,6 +14,6 @@ script:
   - ~/prince/bin/prince -v https://html.spec.whatwg.org/ -o print.pdf
   - ls -l print.pdf
   # optimize
-  # - curl --remote-name --fail https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
-  - ./pdfsizeopt/pdfsizeopt --do-require-image-optimizers=no print.pdf print-opt.pdf
+  - curl --remote-name --fail https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
+  - CLASSPATH="$PWD/Multivalent20091027.jar" ./pdfsizeopt/pdfsizeopt --use-pngout=false --use-jbig2=false --use-multivalent=true print.pdf print-opt.pdf
   - ls -l *.pdf
