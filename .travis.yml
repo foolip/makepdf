@@ -14,7 +14,6 @@ script:
   - ~/prince/bin/prince -v https://html.spec.whatwg.org/ -o print.pdf
   - ls -l print.pdf
   # optimize
-  - curl --fail --output Multivalent.jar https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
   - export CLASSPATH="$PWD/Multivalent.jar"
   - ls -l $CLASSPATH
   - ./pdfsizeopt/pdfsizeopt --use-pngout=false --use-jbig2=false --use-multivalent=true print.pdf print-opt.pdf
