@@ -1,20 +1,18 @@
 addons:
   apt:
     packages:
-      - default-jre
       - fonts-dejavu
       - fonts-droid
       - netpbm
       - sam2p
 script:
   # generate
-  - curl --fail --remote-name https://www.princexml.com/download/prince-11.3-linux-generic-x86_64.tar.gz
+  - curl --remote-name --fail https://www.princexml.com/download/prince-11.3-linux-generic-x86_64.tar.gz
   - tar xzf prince-11.3-linux-generic-x86_64.tar.gz
   - echo ~/prince | ./prince-11.3-linux-generic-x86_64/install.sh
   - ~/prince/bin/prince -v https://html.spec.whatwg.org/ -o print.pdf
   - ls -l print.pdf
   # optimize
-  - export CLASSPATH="$PWD/Multivalent.jar"
-  - ls -l $CLASSPATH
-  - ./pdfsizeopt/pdfsizeopt --use-pngout=false --use-jbig2=false --use-multivalent=true print.pdf print-opt.pdf
+  # - curl --remote-name --fail https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
+  - ./pdfsizeopt/pdfsizeopt --do-require-image-optimizers=no print.pdf print-opt.pdf
   - ls -l *.pdf
