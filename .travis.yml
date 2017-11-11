@@ -7,5 +7,5 @@ script:
   - ls -l print.pdf
   # optimize
   - curl --remote-name --fail https://downloads.sourceforge.net/project/multivalent/multivalent/Release20091027/Multivalent20091027.jar
-  - ./pdfsizeopt/pdfsizeopt --use-pngout=true --use-jbig2=true --use-multivalent=false print.pdf print-opt.pdf
+  - ./pdfsizeopt/pdfsizeopt --do-require-image-optimizers=no print.pdf print-opt.pdf
   - ls -l *.pdf
