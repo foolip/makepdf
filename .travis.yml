@@ -1,6 +1,7 @@
 addons:
   apt:
     packages:
+      - netpbm
       - sam2p
 script:
   # generate
